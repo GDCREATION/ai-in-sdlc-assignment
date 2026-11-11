@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": ".cursor/hooks/augmentation-log.py beforeSubmitPrompt"
+      }
+    ],
+    "afterMCPExecution": [
+      {
+        "command": ".cursor/hooks/augmentation-log.py afterMCPExecution"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/augmentation-log.py afterFileEdit"
+      }
+    ],
+    "subagentStop": [
+      {
+        "command": ".cursor/hooks/augmentation-log.py subagentStop"
+      }
+    ],
+    "stop": [
+      {
+        "command": ".cursor/hooks/augmentation-log.py stop"
+      }
+    ]
+  }
+}
