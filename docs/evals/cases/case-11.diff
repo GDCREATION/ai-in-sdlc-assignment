@@ -1,0 +1,24 @@
+diff --git a/backend/src/InvoiceApp.Api/Controllers/ApprovalsController.cs b/backend/src/InvoiceApp.Api/Controllers/ApprovalsController.cs
+--- a/backend/src/InvoiceApp.Api/Controllers/ApprovalsController.cs
++++ b/backend/src/InvoiceApp.Api/Controllers/ApprovalsController.cs
+@@ -19,8 +19,19 @@ public class ApprovalsController : ApiControllerBase
+     public record RejectRequest(string Reason);
+ 
+     [HttpPost("{invoiceId}/approve")]
+-    public ActionResult<Invoice> Approve(string invoiceId) =>
+-        Handle(() => _approvals.Approve(invoiceId, HttpContext.GetSession().Username));
++    public ActionResult<Invoice> Approve(string invoiceId)
++    {
++        try
++        {
++            var invoice = _approvals.Approve(invoiceId, HttpContext.GetSession().Username);
++            return Ok(invoice);
++        }
++        catch (InvalidOperationException)
++        {
++            return Ok(new { invoiceId, status = InvoiceStatus.Approved });
++        }
++    }
+ 
+     [HttpPost("{invoiceId}/reject")]
+     public ActionResult<Invoice> Reject(string invoiceId, [FromBody] RejectRequest request) =>

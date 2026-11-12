@@ -9,7 +9,7 @@ The cases live in `ops/evals/cases/`. The set has ten diffs. Which cases contain
 
 ## How to run one case
 
-1. Start a fresh context. A previous case will change the answer. Use the `review-evaluator` agent for that isolation.
+1. Start a fresh context. A previous case will change the answer. Use the `review-evaluator` agent for that isolation. With Cursor **Task**, set a short `description` (e.g. `Eval case-01`) and put `Review case ops/evals/cases/case-NN.diff using review-evaluator rules.` in **`prompt`** — Task fails if `prompt` is missing.
 2. Give it the case diff and the review prompt below. Nothing else: no surrounding repository tour, no hint about the defect, no other case.
 3. Record one row in the results CSV, starting from `ops/evals/results-template.csv`.
 

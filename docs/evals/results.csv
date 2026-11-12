@@ -1,0 +1,49 @@
+run,case,model,prompt_version,verdict,finding_summary,confidence_reported,notes
+1,case-01,composer-2.5-fast,v1,caught,"Null Ids NRE; no Handle; Approver-only role; partial bulk",High,"Named core bulk-approve bugs including null list and missing Handle"
+1,case-02,composer-2.5-fast,v1,caught,SQL injection via customer/status interpolation,High,Both query parameters flagged with high confidence
+1,case-03,composer-2.5-fast,v1,caught,MidpointRounding.ToZero / double-round on money,High,Pinpoints rounding semantic change on discount apply
+1,case-04,composer-2.5-fast,v1,clean_ok,Explicit no findings,—,"Rename-only diff; stated nothing found"
+1,case-05,composer-2.5-fast,v1,caught,Delete missing Admin RequireRole,High,Primary security defect named precisely; extra Handle/204 notes are adjacent not false alarm
+1,case-06,composer-2.5-fast,v1,clean_ok,No defects in added tests,—,Clean case; reviewer explicitly found nothing
+1,case-07,composer-2.5-fast,v1,caught,Structured log of full invoice + user (PII),High,Named sensitive-data exposure as main defect
+1,case-08,composer-2.5-fast,v1,caught,Dictionary not thread-safe; Add race,High,ConcurrentDictionary regression and TryAdd removal
+1,case-09,composer-2.5-fast,v1,caught,Misleading README reset-via-relogin claim,Medium,Doc defect named; correctly left appsettings as non-defect
+1,case-10,composer-2.5-fast,v1,caught,Catch-all Exception returns 200 Ok,High,Exact failure-hiding behavior in Handle
+2,case-01,composer-2.5-fast,v1,caught,Null Ids; no Handle; role/partial bulk,High,Same defect cluster as run 1
+2,case-02,composer-2.5-fast,v1,caught,SQL injection; extra _queries note,High,Injection named; compile note not scored as false alarm
+2,case-03,composer-2.5-fast,v1,caught,ToZero double-round on discount,High,
+2,case-04,composer-2.5-fast,v1,clean_ok,Explicit no findings,—,
+2,case-05,composer-2.5-fast,v1,caught,Delete missing Admin role,High,
+2,case-06,composer-2.5-fast,v1,clean_ok,Explicit no definite defect,—,
+2,case-07,composer-2.5-fast,v1,caught,PII in approval logs,High,
+2,case-08,composer-2.5-fast,v1,caught,Non-thread-safe Dictionary,High,
+2,case-09,composer-2.5-fast,v1,missed,Explicit no findings,—,Missed README sign-out reset false claim
+2,case-10,composer-2.5-fast,v1,caught,Catch-all returns Ok,High,
+3,case-01,composer-2.5-fast,v1,caught,Null Ids; no Handle; bulk partial,High,
+3,case-02,composer-2.5-fast,v1,caught,SQL injection (+ _queries in diff),High,
+3,case-03,composer-2.5-fast,v1,caught,Rounding ToZero with example,High,
+3,case-04,composer-2.5-fast,v1,clean_ok,No findings,—,
+3,case-05,composer-2.5-fast,v1,caught,Delete missing Admin RequireRole,High,
+3,case-06,composer-2.5-fast,v1,false_alarm,Test contract / flaky assertions claimed,Medium,Clean case; asserted defects in test-only diff
+3,case-07,composer-2.5-fast,v1,caught,Full invoice+user logged,High,
+3,case-08,composer-2.5-fast,v1,caught,ConcurrentDictionary regression,High,
+3,case-09,composer-2.5-fast,v1,missed,No defects in diff,—,Again missed doc-only false claim
+3,case-10,composer-2.5-fast,v1,caught,Catch-all Ok on Exception,High,
+1,case-11,composer-2.5-fast,v1,caught,InvalidOperationException → 200 Ok claiming Approved,High,Names wrong HTTP status / double-submit masking
+1,case-12,composer-2.5-fast,v1,clean_ok,No defects in diff,High,Rename-only guard method
+2,case-11,composer-2.5-fast,v1,caught,Approve failures return 200 with Approved body,High,
+2,case-12,composer-2.5-fast,v1,clean_ok,No defects found,High,
+3,case-11,composer-2.5-fast,v1,caught,Misleading 200 on InvalidOperationException,High,
+3,case-12,composer-2.5-fast,v1,clean_ok,No defects found,High,
+4,case-01,composer-2.5-fast,v2,caught,Null Ids; partial bulk loop,High,v2 prompt
+4,case-02,composer-2.5-fast,v2,caught,SQL injection in search query,High,
+4,case-03,composer-2.5-fast,v2,caught,ToZero double-round on money,High,
+4,case-04,composer-2.5-fast,v2,clean_ok,No production-behavior defects,High,
+4,case-05,composer-2.5-fast,v2,caught,Delete missing Admin RequireRole,High,
+4,case-06,composer-2.5-fast,v2,clean_ok,Test-only diff; no runtime change,High,v2 eliminated case-06 false alarm
+4,case-07,composer-2.5-fast,v2,missed,No production defects (ignored logging),—,v2 scoped PII out as non-behavior
+4,case-08,composer-2.5-fast,v2,caught,Dictionary race; non-atomic Add,High,
+4,case-09,composer-2.5-fast,v2,missed,No runtime defects in README/log level,—,v2 ignored doc false claim
+4,case-10,composer-2.5-fast,v2,caught,Catch-all Exception returns Ok,High,
+4,case-11,composer-2.5-fast,v2,caught,InvalidOperationException → 200 Ok,High,
+4,case-12,composer-2.5-fast,v2,false_alarm,Hallucinated ReportsRepository metrics bug,Medium,Clean rename diff only; v2 still invented defect

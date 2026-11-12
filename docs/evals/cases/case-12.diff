@@ -1,0 +1,30 @@
+diff --git a/backend/src/InvoiceApp.Domain/ApprovalService.cs b/backend/src/InvoiceApp.Domain/ApprovalService.cs
+--- a/backend/src/InvoiceApp.Domain/ApprovalService.cs
++++ b/backend/src/InvoiceApp.Domain/ApprovalService.cs
+@@ -31,7 +31,7 @@ public class ApprovalService
+     public Invoice Approve(string invoiceId, string approver)
+     {
+         var invoice = Find(invoiceId);
+-        EnsurePending(invoice);
++        RequirePendingApproval(invoice);
+ 
+         invoice.Status = InvoiceStatus.Approved;
+         invoice.DecidedBy = approver;
+@@ -48,7 +48,7 @@ public class ApprovalService
+         }
+ 
+         var invoice = Find(invoiceId);
+-        EnsurePending(invoice);
++        RequirePendingApproval(invoice);
+ 
+         invoice.Status = InvoiceStatus.Rejected;
+         invoice.DecidedBy = approver;
+@@ -62,7 +62,7 @@ public class ApprovalService
+         _repository.GetById(invoiceId)
+         ?? throw new KeyNotFoundException($"Invoice {invoiceId} was not found.");
+ 
+-    private static void EnsurePending(Invoice invoice)
++    private static void RequirePendingApproval(Invoice invoice)
+     {
+         if (invoice.Status != InvoiceStatus.PendingApproval)
+         {
